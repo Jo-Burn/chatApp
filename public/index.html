@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatApp</title>
-    <script src="./chat.js" async></script>
+    
 </head>
 <body>
     <h1>Chat App</h1>
@@ -14,8 +14,9 @@
     </p>
     <div id="chat-box">
         <p>Start a Convo</p>
-        <input type="text" width="60vw" height="40vh">
-        <button type="button">Send</button>
+        <input type="text" width="60vw" id="input" height="40vh">
+        <button onclick="sendMessage()" type="button" id="send">Send</button>
     </div>
+    <script src="./chat.js" async></script>
 </body>
 </html>
