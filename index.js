@@ -21,11 +21,12 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', socket => {
-    
     console.log('User connected')
-
+    socket.on('disconnect', () => {
+      console.log('User Disconnected')  
+    })
 })
 
-app.listen(port, () => {
+server.listen(port, () => {
     console.log(`Server Running on localhost:${port}`);
 });
