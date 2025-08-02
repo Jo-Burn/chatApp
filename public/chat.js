@@ -2,18 +2,31 @@ console.log('Hello app')
 let send = document.getElementById('send')
 let input = document.getElementById('input')
 let enter = document.getElementById("chat-box");
+let term = document.getElementById('terminal')
+let x = [];
+class message {
+    constructor(mes) {
+     this.mes = mes
+    }
+}
 
 enter.addEventListener('keypress', 
     function(event) {
         if(event.key === "Enter") {
            // console.log('work')
             event.preventDefault();
-            enter.click(sendMessage())
+            enter.click(makeObject())
         }
     }
 )
-//send.addEventListener("click", sendMessage())
+function makeObject() {
+    x = new message(input.value)
+
+    return sendMessage()
+}
 
 function sendMessage() {
-    console.log('message sent')
+    console.log(input.value)
+    //let d = new message(input.value);
+    term.innerHTML = x.mes
 }

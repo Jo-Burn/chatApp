@@ -6,6 +6,7 @@
     <title>ChatApp</title>
     
 </head>
+
 <body>
     <h1>Chat App</h1>
     <p> 
@@ -14,9 +15,14 @@
     </p>
     <div id="chat-box">
         <p>Start a Convo</p>
+        <p id="terminal"></p>
         <input type="text" width="60vw" id="input" height="40vh">
-        <button onclick="sendMessage()" type="button" id="send">Send</button>
+        <button onclick="makeObject()" type="button" id="send">Send</button>
     </div>
     <script src="./chat.js" async></script>
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+<script>
+  var socket = io();
+</script>
 </body>
 </html>
