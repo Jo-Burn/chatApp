@@ -13,16 +13,33 @@
        Welcome to a chat room,
        just say Hi to whoever's Online
     </p>
-    <div id="chat-box">
-        <p>Start a Convo</p>
-        <p id="terminal"></p>
-        <input type="text" width="60vw" id="input" height="40vh">
-        <button onclick="makeObject()" type="button" id="send">Send</button>
-    </div>
-    <script src="./chat.js" async></script>
+    <ul id="messages"></ul>
+    <form id="form" action="">
+      <input id="input" autocomplete="off" /><button>Send</button>
+    </form>
+   <!-- <script src="./chat.js" async></script>-->
     <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
 <script>
   var socket = io();
+
+  let message = document.getElementById('messages')
+  let form = document.getElementById('form')
+  let input = document.getElementById('input')
+
+  form.addEventListener('submit', function(x) {
+    x.preventDefault()
+    if(input.value) {
+        socket.emit('chat message', input.value)
+        input.value = ''
+    }
+  })
+
+  socket.on('chat message', function(msg) {
+    let item = document.createElement('li')
+    item.textContent = msg
+    message.appendChild(item)
+    window.scrollTo(0, document.body.scrollHeight)
+  })
 </script>
 </body>
 </html>
