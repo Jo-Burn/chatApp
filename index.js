@@ -21,23 +21,16 @@ app.get('/', (req, res) => {
 });
 
 io.on('connection', socket => {
-    console.log('User connected')
+    console.log(`User ${socket.id} connected`)
+    socket.emit('chat message', 'Another has joined')
+    //console.log(socket.id)
     socket.on('disconnect', () => {
       console.log('User Disconnected')  
     })
+    socket.on('chat message', (msg) => {
+    io.emit('chat message', `${socket.id} says ${msg}`);
+  });
 })
-
-io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    console.log('message: ' + msg);
-  });
-});
-
-io.on('connection', (socket) => {
-  socket.on('chat message', (msg) => {
-    io.emit('chat message', msg);
-  });
-});
 
 server.listen(port, () => {
     console.log(`Server Running on localhost:${port}`);
